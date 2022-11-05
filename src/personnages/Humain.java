@@ -1,9 +1,9 @@
 package personnages;
 
 public class Humain {
-	private String nom;
-	private String boissonFavori;
-	private int monnaie;
+	protected String nom;
+	protected String boissonFavori;
+	protected int monnaie;
 	public String getNom() {
 		return nom;
 	}
@@ -42,13 +42,13 @@ public class Humain {
 			parler("Je n'ai plus que "+monnaie+" sous en poche. Je ne peux même pas m'offrir un "+bien+" à " +prix+" sous");
 		}
 	}
-	public void gagnerArgent(int gain) {
-		parler("J'ai gagne un bon somme de "+ gain);
+	public int gagnerArgent(int gain) {
 		monnaie+=gain;
+		return monnaie;
 	}
-	public void pardreArgent(int perte) {
-		parler("J'ai perdu un mauvais somme de "+perte);
+	public int perdreArgent(int perte) {
 		monnaie-=perte;
+		return monnaie;
 	}
 	
 }
