@@ -6,7 +6,7 @@ public class Humain {
 	private int monnaie;
 	protected int nbConnaissance;
 	protected Humain[] memoire;
-	private int nbConnaissanceMax=3;
+	private int nbConnaissanceMax=30;
 	
 	public String getNom() {
 		return nom;

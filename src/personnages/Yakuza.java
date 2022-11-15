@@ -49,6 +49,11 @@ public class Yakuza extends Humain {
 		parler("Ce ronin pensait vraiment battre "+getNom()+" du clan de "+clan+" ? Je l'ai dépouillé de ses "+gain+" sous.)");
 	}
 	@Override
+	public void direBonjour() {
+		super.direBonjour();
+		parler("Mon clan est celui de "+this.clan);
+	}
+	@Override
 	public String toString() {
 		return "Yakuza [clan=" + clan + ", reputation=" + reputation + ", nom=" + getNom() + ", boissonFavori="
 				+ this.getBoissonFavori() + ", monnaie=" + this.getMonnaie() + "]";
