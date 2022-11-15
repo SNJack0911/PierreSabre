@@ -8,8 +8,8 @@ public class Ronin extends Humain {
 		super(nom, boissonFavori, monnaie);
 	}
 	public void donner(Commercant beneficiaire) {
-		int somme = (int) (monnaie*0.1);
-		parler( beneficiaire.nom+" prend ces "+somme+" sous.");
+		int somme = (int) (this.getMonnaie()*0.1);
+		parler( beneficiaire.getNom()+" prend ces "+somme+" sous.");
 		beneficiaire.recevoir(somme);
 	}
 	
@@ -23,8 +23,8 @@ public class Ronin extends Humain {
 		}else {
 			honneur-=1;
 			parler("J'ai perdu contre ce yakuza, mon honneur et ma bourse ont en pris un coup.");
-			adversaire.gagner(monnaie);
-			this.perdreArgent(monnaie);
+			adversaire.gagner(this.getMonnaie());
+			this.perdreArgent(this.getMonnaie());
 		}
 	}
 }

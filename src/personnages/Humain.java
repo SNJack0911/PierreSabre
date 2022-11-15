@@ -1,31 +1,34 @@
 package personnages;
 
 public class Humain {
-	protected String nom;
-	protected String boissonFavori;
-	protected int monnaie;
+	private String nom;
+	private String boissonFavori;
+	private int monnaie;
+	protected int nbConnaissance;
+	protected Humain[] memoire;
+	private int nbConnaissanceMax=3;
+	
 	public String getNom() {
 		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
 	}
 	public int getMonnaie() {
 		return monnaie;
 	}
-	public void setMonnaie(int monnaie) {
-		this.monnaie = monnaie;
+	public String getBoissonFavori() {
+		return boissonFavori;
 	}
 	public Humain(String nom, String boissonFavori, int monnaie) {
 		super();
 		this.nom = nom;
 		this.boissonFavori = boissonFavori;
 		this.monnaie = monnaie;
+		this.nbConnaissance=0;
+		memoire=new Humain[nbConnaissanceMax];
 	}
 	private String prendreParole() {
 		return "("+nom+")" + " - ";
 	}
-	public void parler(String texte) {
+	protected void parler(String texte) {
 		System.out.println(prendreParole()  + texte );
 	}
 	public void direBonjour() {
@@ -42,13 +45,40 @@ public class Humain {
 			parler("Je n'ai plus que "+monnaie+" sous en poche. Je ne peux même pas m'offrir un "+bien+" à " +prix+" sous");
 		}
 	}
-	public int gagnerArgent(int gain) {
+	protected int gagnerArgent(int gain) {
 		monnaie+=gain;
 		return monnaie;
 	}
-	public int perdreArgent(int perte) {
+	protected int perdreArgent(int perte) {
 		monnaie-=perte;
 		return monnaie;
 	}
-	
+	public void faireConnaissanceAvec(Humain humain2) {
+		this.direBonjour();
+		humain2.repondre(this);
+		this.memoriser(humain2);
+	}
+	private void memoriser(Humain humain) {
+		if (nbConnaissance<nbConnaissanceMax) {
+			memoire[nbConnaissance]=humain;
+			nbConnaissance+=1;
+		}else {
+			for (int i =0;i<nbConnaissanceMax-1;i++) {
+				memoire[i]=memoire[i+1];
+			}
+			memoire[nbConnaissanceMax-1]=humain;
+		}
+	}
+	private void repondre(Humain humain) {
+		this.direBonjour();
+		this.memoriser(humain);
+	}
+	public void listerConnaissance() {
+		System.out.print(prendreParole()+"Je connais beaucoup de monde dont : ");
+		for(int i =0;i<nbConnaissance;i++) {
+			System.out.print(memoire[i].nom+", ");
+		}
+		System.out.println();
+	}
+
 }
